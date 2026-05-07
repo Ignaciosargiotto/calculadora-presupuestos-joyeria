@@ -7,382 +7,100 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --gold: #B8964E;
-    --gold-light: #D4AF72;
-    --gold-pale: #F5EDD8;
-    --silver: #A8A8B0;
-    --silver-light: #E8E8EC;
-    --bg: #FAFAF8;
-    --bg-card: #FFFFFF;
-    --text: #1A1A1A;
-    --text-muted: #6B6B70;
-    --text-hint: #9B9BA0;
-    --border: #E4E4E0;
-    --border-focus: #B8964E;
-    --success: #4A7C59;
-    --radius: 10px;
-    --radius-sm: 6px;
+    --gold: #B8964E; --gold-light: #D4AF72; --gold-pale: #F5EDD8;
+    --silver: #A8A8B0; --silver-light: #E8E8EC;
+    --bg: #FAFAF8; --bg-card: #FFFFFF;
+    --text: #1A1A1A; --text-muted: #6B6B70; --text-hint: #9B9BA0;
+    --border: #E4E4E0; --border-focus: #B8964E;
+    --success: #4A7C59; --radius: 10px; --radius-sm: 6px;
   }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0;
-  }
-
-  header {
-    background: var(--text);
-    color: white;
-    padding: 1.5rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  header .logo-mark {
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--gold);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    color: var(--gold);
-  }
-
-  header h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
-    letter-spacing: 0.02em;
-  }
-
-  header p {
-    font-size: 12px;
-    color: var(--silver);
-    margin-top: 1px;
-  }
-
-  .container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
-
-  .tabs {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 1.5rem;
-    background: var(--silver-light);
-    padding: 4px;
-    border-radius: var(--radius);
-  }
-
-  .tab {
-    flex: 1;
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    font-weight: 400;
-    cursor: pointer;
-    text-align: center;
-    color: var(--text-muted);
-    transition: all 0.18s;
-    border: none;
-    background: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .tab.active {
-    background: var(--bg-card);
-    color: var(--text);
-    font-weight: 500;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  }
-
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header { background: var(--text); color: white; padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+  header .logo-mark { width: 36px; height: 36px; border: 1.5px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: white; letter-spacing: 0.02em; }
+  header p { font-size: 12px; color: var(--silver); margin-top: 1px; }
+  .container { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 1.5rem; background: var(--silver-light); padding: 4px; border-radius: var(--radius); }
+  .tab { flex: 1; padding: 8px 12px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 400; cursor: pointer; text-align: center; color: var(--text-muted); transition: all 0.18s; border: none; background: none; font-family: 'DM Sans', sans-serif; }
+  .tab.active { background: var(--bg-card); color: var(--text); font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
-
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  .card-title {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-hint);
-    margin-bottom: 1rem;
-  }
-
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
+  .card-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-hint); margin-bottom: 1rem; }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   .field-row.three { grid-template-columns: 1fr 1fr 1fr; }
   .field-row.single { grid-template-columns: 1fr; }
   .field-row:last-child { margin-bottom: 0; }
-
-  .field label {
-    font-size: 12px;
-    color: var(--text-muted);
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  input[type=text], input[type=number], select, textarea {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-    transition: border-color 0.15s;
-    -moz-appearance: textfield;
-  }
-
+  .field label { font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 5px; }
+  input[type=text], input[type=number], select { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
   input:focus, select:focus { border-color: var(--border-focus); background: white; }
-  input[type=number]::-webkit-outer-spin-button,
-  input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
-
+  input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
   select { cursor: pointer; }
-
-  .metal-toggle {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 1rem;
-  }
-
-  .metal-btn {
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-size: 13px;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    color: var(--text-muted);
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
-
-  .metal-btn.active {
-    background: var(--text);
-    color: white;
-    border-color: var(--text);
-  }
-
-  .metal-block {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 1rem;
-    margin-bottom: 8px;
-  }
-
-  .metal-block-title {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--gold);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .metal-block-title::before {
-    content: '';
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-
-  .extra-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 9px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .mode-toggle { display: flex; gap: 0; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .mode-btn { flex: 1; padding: 9px 12px; font-size: 13px; cursor: pointer; border: none; background: var(--bg); color: var(--text-muted); font-family: 'DM Sans', sans-serif; transition: all 0.15s; text-align: center; }
+  .mode-btn:not(:last-child) { border-right: 1px solid var(--border); }
+  .mode-btn.active { background: var(--text); color: white; font-weight: 500; }
+  .metal-toggle { display: flex; gap: 6px; margin-bottom: 1rem; }
+  .metal-btn { padding: 6px 16px; border-radius: 100px; font-size: 13px; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .metal-btn.active { background: var(--text); color: white; border-color: var(--text); }
+  .metal-block { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 8px; }
+  .metal-block-title { font-size: 12px; font-weight: 500; color: var(--gold); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .metal-block-title::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .mo-info { background: var(--gold-pale); border: 1px solid #DFC98A; border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; color: #7A6030; margin-bottom: 12px; line-height: 1.6; }
+  .mo-formula { font-family: monospace; font-size: 12px; background: rgba(0,0,0,0.06); padding: 2px 6px; border-radius: 4px; }
+  .extra-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .extra-row:last-of-type { border-bottom: none; }
-
-  .extra-row label {
-    font-size: 14px;
-    color: var(--text);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .extra-row input[type=checkbox] {
-    width: 16px; height: 16px;
-    cursor: pointer;
-    accent-color: var(--gold);
-  }
-
+  .extra-row label { font-size: 14px; color: var(--text); cursor: pointer; display: flex; align-items: center; gap: 8px; }
+  .extra-row input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; accent-color: var(--gold); }
   .extra-price { font-size: 13px; color: var(--text-muted); }
-
   .pieces-ctrl { display: flex; align-items: center; gap: 10px; }
-
-  .pieces-btn {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    cursor: pointer;
-    font-size: 18px;
-    line-height: 1;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
+  .pieces-btn { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); cursor: pointer; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; color: var(--text); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
   .pieces-btn:hover { border-color: var(--gold); color: var(--gold); }
-
   .pieces-num { font-size: 16px; font-weight: 500; min-width: 20px; text-align: center; }
-
-  /* Stones table */
   .stones-wrap { overflow-x: auto; }
   .stones-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .stones-table th {
-    text-align: left;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-hint);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 4px 6px 8px;
-    border-bottom: 1px solid var(--border);
-  }
+  .stones-table th { text-align: left; font-size: 11px; font-weight: 500; color: var(--text-hint); text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 6px 8px; border-bottom: 1px solid var(--border); }
   .stones-table td { padding: 6px 4px; border-bottom: 1px solid var(--border); }
   .stones-table tr:last-child td { border-bottom: none; }
   .stones-table input, .stones-table select { font-size: 13px; padding: 6px 8px; }
-
-  .btn-ghost {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 7px 14px;
-    font-size: 13px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    margin-top: 10px;
-  }
+  .btn-ghost { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 7px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text-muted); cursor: pointer; transition: all 0.15s; margin-top: 10px; }
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
-  .remove-btn {
-    background: none;
-    border: none;
-    color: #C0392B;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 0 4px;
-    line-height: 1;
-    border-radius: 4px;
-    transition: background 0.15s;
-  }
+  .remove-btn { background: none; border: none; color: #C0392B; cursor: pointer; font-size: 18px; padding: 0 4px; line-height: 1; border-radius: 4px; transition: background 0.15s; }
   .remove-btn:hover { background: #FEE; }
-
-  /* Costos extra */
   .cost-extra-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .cost-extra-row .desc-input { flex: 2; }
   .cost-extra-row .val-input { flex: 1; }
-
-  /* Resultado */
-  .result-card {
-    background: var(--text);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
+  .result-card { background: var(--text); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; color: white; }
   .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
-
   .metric { background: rgba(255,255,255,0.07); border-radius: var(--radius-sm); padding: 1rem; }
   .metric-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
   .metric-value { font-size: 24px; font-weight: 500; font-family: 'Cormorant Garamond', serif; }
   .metric-value.highlight { color: var(--gold-light); }
   .metric-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-
   .desglose { font-size: 13px; }
   .desglose-row { display: flex; justify-content: space-between; padding: 4px 0; color: rgba(255,255,255,0.55); }
+  .desglose-row.subtraction { color: #F0A0A0; }
   .desglose-row.total { color: white; font-weight: 500; border-top: 1px solid rgba(255,255,255,0.15); margin-top: 6px; padding-top: 8px; }
-
-  .btn-primary {
-    width: 100%;
-    padding: 12px;
-    background: var(--gold);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: background 0.15s;
-    letter-spacing: 0.02em;
-  }
+  .presupuesto-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; white-space: pre-wrap; font-size: 14px; line-height: 1.8; color: var(--text); font-family: 'DM Sans', sans-serif; margin-bottom: 12px; }
+  .btn-primary { width: 100%; padding: 12px; background: var(--gold); color: white; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.15s; letter-spacing: 0.02em; }
   .btn-primary:hover { background: var(--gold-light); }
-
-  .presupuesto-box {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    white-space: pre-wrap;
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    margin-bottom: 12px;
-  }
-
-  .btn-copy {
-    width: 100%;
-    padding: 11px;
-    background: var(--text);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
+  .btn-copy { width: 100%; padding: 11px; background: var(--text); color: white; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.15s; }
   .btn-copy:hover { background: #333; }
   .btn-copy.copied { background: var(--success); }
-
-  .dolar-row { display: flex; align-items: center; gap: 8px; }
-  .dolar-row input { flex: 1; }
-  .dolar-badge {
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 100px;
-    background: #E8F5EC;
-    color: var(--success);
-    white-space: nowrap;
-  }
-
+  .inline-row { display: flex; align-items: center; gap: 8px; }
+  .inline-row input { flex: 1; }
+  .badge { font-size: 11px; padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+  .badge-green { background: #E8F5EC; color: var(--success); }
+  .badge-amber { background: #FEF3E2; color: #9A6B10; }
+  .section-sub { font-size: 12px; color: var(--text-hint); margin-bottom: 10px; line-height: 1.5; }
   @media (max-width: 500px) {
     .field-row { grid-template-columns: 1fr; }
     .field-row.three { grid-template-columns: 1fr 1fr; }
     .result-grid { grid-template-columns: 1fr; }
     header { padding: 1rem 1.25rem; }
     .container { padding: 1.25rem 1rem; }
+    .mode-btn { font-size: 11px; padding: 8px 6px; }
   }
 </style>
 </head>
@@ -397,7 +115,6 @@
 </header>
 
 <div class="container">
-
   <div class="tabs">
     <button class="tab active" onclick="switchTab('calc')">Calculadora</button>
     <button class="tab" onclick="switchTab('config')">Configuración</button>
@@ -438,6 +155,18 @@
     </div>
 
     <div class="card">
+      <p class="card-title">Modo de cálculo</p>
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="mode-btn-completo" onclick="setCalcMode('completo')">Material + mano de obra</button>
+        <button class="mode-btn" id="mode-btn-mo" onclick="setCalcMode('mo')">Solo mano de obra (cliente trae el metal)</button>
+      </div>
+      <div id="mo-info" style="display:none" class="mo-info">
+        El cliente trae su propio metal. Se cobra el precio/g por complejidad <strong>menos el costo spot del metal</strong>.<br>
+        <span class="mo-formula">cobro/g = precio/g (complejidad) − spot del día</span>
+      </div>
+    </div>
+
+    <div class="card">
       <p class="card-title">Metales</p>
       <div class="metal-toggle">
         <button class="metal-btn active" id="btn-plata" onclick="setModo('plata')">Solo plata</button>
@@ -447,12 +176,8 @@
       <div id="block-plata" class="metal-block">
         <div class="metal-block-title">Plata 925</div>
         <div class="field-row">
-          <div class="field">
-            <label>Peso (gramos)</label>
-            <input type="number" id="peso-plata" value="3" min="0" step="0.1" oninput="recalc()">
-          </div>
-          <div class="field">
-            <label>Complejidad del diseño</label>
+          <div class="field"><label>Peso (gramos)</label><input type="number" id="peso-plata" value="3" min="0" step="0.1" oninput="recalc()"></div>
+          <div class="field"><label>Complejidad del diseño</label>
             <select id="comp-plata" onchange="recalc()">
               <option value="1">1 — Muy simple</option>
               <option value="2">2 — Simple</option>
@@ -466,12 +191,8 @@
       <div id="block-oro" style="display:none" class="metal-block">
         <div class="metal-block-title">Oro</div>
         <div class="field-row">
-          <div class="field">
-            <label>Peso (gramos)</label>
-            <input type="number" id="peso-oro" value="1" min="0" step="0.1" oninput="recalc()">
-          </div>
-          <div class="field">
-            <label>Complejidad del diseño</label>
+          <div class="field"><label>Peso (gramos)</label><input type="number" id="peso-oro" value="1" min="0" step="0.1" oninput="recalc()"></div>
+          <div class="field"><label>Complejidad del diseño</label>
             <select id="comp-oro" onchange="recalc()">
               <option value="1">1 — Muy simple</option>
               <option value="2">2 — Simple</option>
@@ -488,15 +209,13 @@
       <p class="card-title">Piedras</p>
       <div class="stones-wrap">
         <table class="stones-table">
-          <thead>
-            <tr>
-              <th style="width:34%">Descripción</th>
-              <th style="width:28%">Tipo</th>
-              <th style="width:14%">Cant.</th>
-              <th style="width:18%">USD/u</th>
-              <th style="width:6%"></th>
-            </tr>
-          </thead>
+          <thead><tr>
+            <th style="width:34%">Descripción</th>
+            <th style="width:28%">Tipo</th>
+            <th style="width:14%">Cant.</th>
+            <th style="width:18%">USD/u</th>
+            <th style="width:6%"></th>
+          </tr></thead>
           <tbody id="stones-body"></tbody>
         </table>
       </div>
@@ -513,8 +232,8 @@
         <label><input type="checkbox" id="extra-urgente" onchange="recalc()"> Urgente (plazo corto)</label>
         <span class="extra-price">+ USD <span id="val-urgente">—</span></span>
       </div>
-      <div style="margin-top: 12px;">
-        <p style="font-size:12px; color: var(--text-hint); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Costos adicionales libres</p>
+      <div style="margin-top:12px">
+        <p style="font-size:12px;color:var(--text-hint);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em">Costos adicionales libres</p>
         <div id="costos-extra-list"></div>
         <button class="btn-ghost" onclick="addCostoExtra()">+ Agregar costo</button>
       </div>
@@ -523,7 +242,7 @@
     <div class="result-card">
       <div class="result-grid">
         <div class="metric">
-          <p class="metric-label">materiales + MO</p>
+          <p class="metric-label" id="res-label-base">materiales + MO</p>
           <p class="metric-value" id="res-base-usd">—</p>
           <p class="metric-sub">USD base</p>
         </div>
@@ -541,50 +260,80 @@
 
   <!-- CONFIGURACIÓN -->
   <div id="tab-config" class="tab-panel">
+
     <div class="card">
       <p class="card-title">Cotización del día</p>
+      <p class="section-sub">Actualizá estos valores cada mañana antes de presupuestar.</p>
       <div class="field-row single">
         <div class="field">
           <label>Dólar blue (ARS por USD)</label>
-          <div class="dolar-row">
-            <input type="number" id="cfg-dolar" value="1230" oninput="saveConfig(); recalc()">
-            <span class="dolar-badge">actualizar cada día</span>
+          <div class="inline-row">
+            <input type="number" id="cfg-dolar" value="1230" oninput="saveConfig();recalc()">
+            <span class="badge badge-green">actualizar cada día</span>
           </div>
         </div>
       </div>
     </div>
+
     <div class="card">
-      <p class="card-title">Precio por gramo — Plata 925 (USD)</p>
-      <div class="field-row three">
-        <div class="field"><label>Nivel 1 (mín)</label><input type="number" id="plata-1" value="7" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Nivel 3 (medio)</label><input type="number" id="plata-3" value="14" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Nivel 5 (máx)</label><input type="number" id="plata-5" value="25" oninput="saveConfig(); recalc()"></div>
+      <p class="card-title">Precio spot del metal (USD por gramo)</p>
+      <p class="section-sub">Cotización internacional de mercado. Se descuenta automáticamente cuando el cliente trae su propio metal.</p>
+      <div class="field-row">
+        <div class="field">
+          <label>Spot plata 925 (USD/g)</label>
+          <div class="inline-row">
+            <input type="number" id="cfg-spot-plata" value="0.90" step="0.01" oninput="saveConfig();recalc()">
+            <span class="badge badge-amber">spot</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Spot oro (USD/g)</label>
+          <div class="inline-row">
+            <input type="number" id="cfg-spot-oro" value="95" step="0.5" oninput="saveConfig();recalc()">
+            <span class="badge badge-amber">spot</span>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="card">
-      <p class="card-title">Precio por gramo — Oro (USD)</p>
+      <p class="card-title">Precio por gramo según complejidad — Plata 925 (USD)</p>
+      <p class="section-sub">Tu tarifa total (material + mano de obra). Interpolación automática entre niveles.</p>
       <div class="field-row three">
-        <div class="field"><label>Nivel 1 (mín)</label><input type="number" id="oro-1" value="180" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Nivel 3 (medio)</label><input type="number" id="oro-3" value="200" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Nivel 5 (máx)</label><input type="number" id="oro-5" value="220" oninput="saveConfig(); recalc()"></div>
+        <div class="field"><label>Nivel 1 (mín)</label><input type="number" id="plata-1" value="7" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Nivel 3 (medio)</label><input type="number" id="plata-3" value="14" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Nivel 5 (máx)</label><input type="number" id="plata-5" value="25" oninput="saveConfig();recalc()"></div>
       </div>
     </div>
+
+    <div class="card">
+      <p class="card-title">Precio por gramo según complejidad — Oro (USD)</p>
+      <p class="section-sub">Tu tarifa total (material + mano de obra).</p>
+      <div class="field-row three">
+        <div class="field"><label>Nivel 1 (mín)</label><input type="number" id="oro-1" value="180" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Nivel 3 (medio)</label><input type="number" id="oro-3" value="200" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Nivel 5 (máx)</label><input type="number" id="oro-5" value="220" oninput="saveConfig();recalc()"></div>
+      </div>
+    </div>
+
     <div class="card">
       <p class="card-title">Precios de referencia por tipo de piedra (USD / unidad)</p>
       <div class="field-row three">
-        <div class="field"><label>Vidrio / sintética</label><input type="number" id="cfg-piedra-v" value="3" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Semipreciosa</label><input type="number" id="cfg-piedra-s" value="12" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Preciosa</label><input type="number" id="cfg-piedra-p" value="35" oninput="saveConfig(); recalc()"></div>
+        <div class="field"><label>Vidrio / sintética</label><input type="number" id="cfg-piedra-v" value="3" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Semipreciosa</label><input type="number" id="cfg-piedra-s" value="12" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Preciosa</label><input type="number" id="cfg-piedra-p" value="35" oninput="saveConfig();recalc()"></div>
       </div>
     </div>
+
     <div class="card">
       <p class="card-title">Extras fijos (USD)</p>
       <div class="field-row three">
-        <div class="field"><label>Grabado / inscripción</label><input type="number" id="cfg-grabado" value="8" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>Recargo fijo urgencia</label><input type="number" id="cfg-urgente" value="15" oninput="saveConfig(); recalc()"></div>
-        <div class="field"><label>% adicional urgencia</label><input type="number" id="cfg-urgente-pct" value="20" oninput="saveConfig(); recalc()"></div>
+        <div class="field"><label>Grabado / inscripción</label><input type="number" id="cfg-grabado" value="8" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>Recargo fijo urgencia</label><input type="number" id="cfg-urgente" value="15" oninput="saveConfig();recalc()"></div>
+        <div class="field"><label>% adicional urgencia</label><input type="number" id="cfg-urgente-pct" value="20" oninput="saveConfig();recalc()"></div>
       </div>
     </div>
+
     <div class="card">
       <p class="card-title">Tu taller</p>
       <div class="field-row">
@@ -599,28 +348,23 @@
     <div class="presupuesto-box" id="presupuesto-texto">Completá los datos en la pestaña "Calculadora" y presioná "Generar texto de presupuesto".</div>
     <button class="btn-copy" id="copy-btn" onclick="copiarPresupuesto()">Copiar presupuesto</button>
   </div>
-
 </div>
 
 <script>
-  let piezas = 1;
-  let modoMetal = 'plata';
-  let stonesData = [];
-  let costosExtra = [];
-  let stoneId = 0;
-  let costoId = 0;
+  let piezas = 1, modoMetal = 'plata', calcMode = 'completo';
+  let stonesData = [], costosExtra = [], stoneId = 0, costoId = 0;
 
-  // Persist config in localStorage
+  const CONFIG_KEYS = ['cfg-dolar','cfg-spot-plata','cfg-spot-oro','plata-1','plata-3','plata-5','oro-1','oro-3','oro-5','cfg-piedra-v','cfg-piedra-s','cfg-piedra-p','cfg-grabado','cfg-urgente','cfg-urgente-pct','cfg-taller','cfg-plazo'];
+
   function saveConfig() {
-    const keys = ['cfg-dolar','plata-1','plata-3','plata-5','oro-1','oro-3','oro-5','cfg-piedra-v','cfg-piedra-s','cfg-piedra-p','cfg-grabado','cfg-urgente','cfg-urgente-pct','cfg-taller','cfg-plazo'];
     const cfg = {};
-    keys.forEach(k => { const el = document.getElementById(k); if(el) cfg[k] = el.value; });
-    try { localStorage.setItem('joyeria-config', JSON.stringify(cfg)); } catch(e) {}
+    CONFIG_KEYS.forEach(k => { const el = document.getElementById(k); if(el) cfg[k] = el.value; });
+    try { localStorage.setItem('joyeria-config-v3', JSON.stringify(cfg)); } catch(e) {}
   }
 
   function loadConfig() {
     try {
-      const raw = localStorage.getItem('joyeria-config');
+      const raw = localStorage.getItem('joyeria-config-v3');
       if (!raw) return;
       const cfg = JSON.parse(raw);
       Object.keys(cfg).forEach(k => { const el = document.getElementById(k); if(el) el.value = cfg[k]; });
@@ -634,11 +378,16 @@
     document.getElementById('tab-'+t).classList.add('active');
   }
 
-  function changePiezas(d) {
-    piezas = Math.max(1, piezas+d);
-    document.getElementById('piezas-num').textContent = piezas;
+  function setCalcMode(m) {
+    calcMode = m;
+    document.getElementById('mode-btn-completo').classList.toggle('active', m==='completo');
+    document.getElementById('mode-btn-mo').classList.toggle('active', m==='mo');
+    document.getElementById('mo-info').style.display = m==='mo' ? 'block' : 'none';
+    document.getElementById('res-label-base').textContent = m==='mo' ? 'MO neta' : 'materiales + MO';
     recalc();
   }
+
+  function changePiezas(d) { piezas = Math.max(1, piezas+d); document.getElementById('piezas-num').textContent = piezas; recalc(); }
 
   function setModo(m) {
     modoMetal = m;
@@ -653,36 +402,30 @@
   function getPorGramo(metal, nivel) {
     const n = parseFloat(nivel);
     if (metal==='plata') {
-      const mn=parseFloat(document.getElementById('plata-1').value)||7;
-      const mid=parseFloat(document.getElementById('plata-3').value)||14;
-      const mx=parseFloat(document.getElementById('plata-5').value)||25;
+      const mn=parseFloat(document.getElementById('plata-1').value)||7, mid=parseFloat(document.getElementById('plata-3').value)||14, mx=parseFloat(document.getElementById('plata-5').value)||25;
       return n<=3 ? lerp(mn,mid,(n-1)/2) : lerp(mid,mx,(n-3)/2);
     } else {
-      const mn=parseFloat(document.getElementById('oro-1').value)||180;
-      const mid=parseFloat(document.getElementById('oro-3').value)||200;
-      const mx=parseFloat(document.getElementById('oro-5').value)||220;
+      const mn=parseFloat(document.getElementById('oro-1').value)||180, mid=parseFloat(document.getElementById('oro-3').value)||200, mx=parseFloat(document.getElementById('oro-5').value)||220;
       return n<=3 ? lerp(mn,mid,(n-1)/2) : lerp(mid,mx,(n-3)/2);
     }
   }
 
+  function getSpot(metal) {
+    return metal==='plata' ? (parseFloat(document.getElementById('cfg-spot-plata').value)||0) : (parseFloat(document.getElementById('cfg-spot-oro').value)||0);
+  }
+
   function getDefaultPrice(tipo) {
     const map = { vidrio:'cfg-piedra-v', semipreciosa:'cfg-piedra-s', preciosa:'cfg-piedra-p' };
-    const el = document.getElementById(map[tipo]);
-    return el ? parseFloat(el.value)||0 : 0;
+    const el = document.getElementById(map[tipo]); return el ? parseFloat(el.value)||0 : 0;
   }
 
   function addStone() {
     const id = ++stoneId;
     stonesData.push({id, desc:'', tipo:'preciosa', cant:1, precio: getDefaultPrice('preciosa')});
-    renderStones();
-    recalc();
+    renderStones(); recalc();
   }
 
-  function removeStone(id) {
-    stonesData = stonesData.filter(s=>s.id!==id);
-    renderStones();
-    recalc();
-  }
+  function removeStone(id) { stonesData = stonesData.filter(s=>s.id!==id); renderStones(); recalc(); }
 
   function renderStones() {
     const tbody = document.getElementById('stones-body');
@@ -704,187 +447,132 @@
     });
   }
 
-  function updateStone(id, field, val) {
-    const s = stonesData.find(x=>x.id===id);
-    if(s){ s[field]=val; recalc(); }
-  }
+  function updateStone(id, field, val) { const s=stonesData.find(x=>x.id===id); if(s){s[field]=val;recalc();} }
 
   function updateStoneType(id, tipo) {
-    const s = stonesData.find(x=>x.id===id);
-    if(!s) return;
-    s.tipo = tipo;
-    if(tipo !== 'custom') {
-      const p = getDefaultPrice(tipo);
-      s.precio = p;
-      const inp = document.getElementById('stone-price-'+id);
-      if(inp) inp.value = p;
-    }
+    const s=stonesData.find(x=>x.id===id); if(!s) return;
+    s.tipo=tipo;
+    if(tipo!=='custom'){s.precio=getDefaultPrice(tipo);const inp=document.getElementById('stone-price-'+id);if(inp)inp.value=s.precio;}
     recalc();
   }
 
-  function addCostoExtra() {
-    const id = ++costoId;
-    costosExtra.push({id, desc:'', valor:0});
-    renderCostosExtra();
-  }
-
-  function removeCostoExtra(id) {
-    costosExtra = costosExtra.filter(c=>c.id!==id);
-    renderCostosExtra();
-    recalc();
-  }
+  function addCostoExtra() { const id=++costoId; costosExtra.push({id,desc:'',valor:0}); renderCostosExtra(); }
+  function removeCostoExtra(id) { costosExtra=costosExtra.filter(c=>c.id!==id); renderCostosExtra(); recalc(); }
 
   function renderCostosExtra() {
-    const container = document.getElementById('costos-extra-list');
-    container.innerHTML = '';
-    costosExtra.forEach(c => {
-      const row = document.createElement('div');
-      row.className = 'cost-extra-row';
-      row.innerHTML = `
-        <input class="desc-input" type="text" placeholder="Descripción (ej: Diamante 0.5ct)" value="${c.desc}" oninput="updateCosto(${c.id},'desc',this.value)">
-        <input class="val-input" type="number" placeholder="USD" value="${c.valor||''}" min="0" step="0.5" oninput="updateCosto(${c.id},'valor',parseFloat(this.value)||0)">
-        <button class="remove-btn" onclick="removeCostoExtra(${c.id})">×</button>`;
+    const container=document.getElementById('costos-extra-list'); container.innerHTML='';
+    costosExtra.forEach(c=>{
+      const row=document.createElement('div'); row.className='cost-extra-row';
+      row.innerHTML=`<input class="desc-input" type="text" placeholder="Descripción" value="${c.desc}" oninput="updateCosto(${c.id},'desc',this.value)"><input class="val-input" type="number" placeholder="USD" value="${c.valor||''}" min="0" step="0.5" oninput="updateCosto(${c.id},'valor',parseFloat(this.value)||0)"><button class="remove-btn" onclick="removeCostoExtra(${c.id})">×</button>`;
       container.appendChild(row);
     });
   }
 
-  function updateCosto(id, field, val) {
-    const c = costosExtra.find(x=>x.id===id);
-    if(c){ c[field]=val; recalc(); }
-  }
+  function updateCosto(id, field, val) { const c=costosExtra.find(x=>x.id===id); if(c){c[field]=val;recalc();} }
 
   function recalc() {
-    const dolar = parseFloat(document.getElementById('cfg-dolar').value)||1230;
-    let baseUSD = 0;
-    let desRows = [];
+    const dolar=parseFloat(document.getElementById('cfg-dolar').value)||1230;
+    let baseUSD=0, desRows=[];
 
-    if(modoMetal==='plata'||modoMetal==='combo'){
-      const p = parseFloat(document.getElementById('peso-plata').value)||0;
-      const c = document.getElementById('comp-plata').value;
-      const pg = getPorGramo('plata', c);
-      const sub = p*pg;
-      baseUSD += sub;
-      if(p>0) desRows.push({label:`Plata 925 · ${p}g × USD ${pg.toFixed(1)}/g`, val:sub});
-    }
-    if(modoMetal==='oro'||modoMetal==='combo'){
-      const p = parseFloat(document.getElementById('peso-oro').value)||0;
-      const c = document.getElementById('comp-oro').value;
-      const pg = getPorGramo('oro', c);
-      const sub = p*pg;
-      baseUSD += sub;
-      if(p>0) desRows.push({label:`Oro · ${p}g × USD ${pg.toFixed(1)}/g`, val:sub});
-    }
+    const processMetal = (metal, pesoId, compId) => {
+      const p=parseFloat(document.getElementById(pesoId).value)||0;
+      const pg=getPorGramo(metal,document.getElementById(compId).value);
+      if(p<=0) return;
+      if(calcMode==='mo'){
+        const spot=getSpot(metal), mo=Math.max(0,pg-spot);
+        baseUSD+=p*mo;
+        desRows.push({label:`${metal==='plata'?'Plata 925':'Oro'} · ${p}g × USD ${pg.toFixed(1)}/g`,val:p*pg});
+        desRows.push({label:`− spot ${metal==='plata'?'plata':'oro'} (${p}g × USD ${spot.toFixed(spot<10?2:0)}/g)`,val:-(p*spot),sub:true});
+      } else {
+        baseUSD+=p*pg;
+        desRows.push({label:`${metal==='plata'?'Plata 925':'Oro'} · ${p}g × USD ${pg.toFixed(1)}/g`,val:p*pg});
+      }
+    };
 
-    let extrasUSD = 0;
+    if(modoMetal==='plata'||modoMetal==='combo') processMetal('plata','peso-plata','comp-plata');
+    if(modoMetal==='oro'||modoMetal==='combo') processMetal('oro','peso-oro','comp-oro');
 
-    stonesData.forEach(s => {
-      const cant = s.cant||1;
-      const precio = s.precio||0;
-      const sub = cant*precio;
-      extrasUSD += sub;
-      if(sub>0) desRows.push({label:`${s.desc||'Piedra'} (${cant}×)`, val:sub});
-    });
+    let extrasUSD=0;
+    stonesData.forEach(s=>{const sub=(s.cant||1)*(s.precio||0);extrasUSD+=sub;if(sub>0)desRows.push({label:`${s.desc||'Piedra'} (${s.cant||1}×)`,val:sub});});
 
     if(document.getElementById('extra-grabado').checked){
-      const g = parseFloat(document.getElementById('cfg-grabado').value)||8;
-      extrasUSD += g;
-      document.getElementById('val-grabado').textContent = g.toFixed(0);
-      desRows.push({label:'Grabado / inscripción', val:g});
+      const g=parseFloat(document.getElementById('cfg-grabado').value)||8; extrasUSD+=g;
+      document.getElementById('val-grabado').textContent=g.toFixed(0);
+      desRows.push({label:'Grabado / inscripción',val:g});
     } else { document.getElementById('val-grabado').textContent='—'; }
 
     if(document.getElementById('extra-urgente').checked){
-      const uf = parseFloat(document.getElementById('cfg-urgente').value)||15;
-      const up = (parseFloat(document.getElementById('cfg-urgente-pct').value)||20)/100;
-      const ut = uf + baseUSD*up;
-      extrasUSD += ut;
-      document.getElementById('val-urgente').textContent = ut.toFixed(0);
-      desRows.push({label:'Recargo urgencia', val:ut});
+      const uf=parseFloat(document.getElementById('cfg-urgente').value)||15, up=(parseFloat(document.getElementById('cfg-urgente-pct').value)||20)/100, ut=uf+baseUSD*up;
+      extrasUSD+=ut; document.getElementById('val-urgente').textContent=ut.toFixed(0);
+      desRows.push({label:'Recargo urgencia',val:ut});
     } else { document.getElementById('val-urgente').textContent='—'; }
 
-    costosExtra.forEach(c => {
-      if(c.valor>0){
-        extrasUSD += c.valor;
-        desRows.push({label:c.desc||'Costo adicional', val:c.valor});
-      }
-    });
+    costosExtra.forEach(c=>{if(c.valor>0){extrasUSD+=c.valor;desRows.push({label:c.desc||'Costo adicional',val:c.valor});}});
 
-    const totalUSDUnidad = baseUSD + extrasUSD;
-    const totalUSD = totalUSDUnidad * piezas;
-    const totalARS = Math.round(totalUSD * dolar);
+    const totalUSDU=baseUSD+extrasUSD, totalUSD=totalUSDU*piezas, totalARS=Math.round(totalUSD*dolar);
+    document.getElementById('res-base-usd').textContent='USD '+baseUSD.toFixed(0);
+    document.getElementById('res-total-ars').textContent='$'+totalARS.toLocaleString('es-AR');
+    document.getElementById('res-total-usd').textContent='USD '+totalUSD.toFixed(0)+(piezas>1?' ('+piezas+' piezas)':'');
 
-    document.getElementById('res-base-usd').textContent = 'USD '+baseUSD.toFixed(0);
-    document.getElementById('res-total-ars').textContent = '$'+totalARS.toLocaleString('es-AR');
-    document.getElementById('res-total-usd').textContent = 'USD '+totalUSD.toFixed(0)+(piezas>1?' ('+piezas+' piezas)':'');
-
-    let des = '';
-    desRows.forEach(r => {
-      des += `<div class="desglose-row"><span>${r.label}</span><span>USD ${r.val.toFixed(0)}</span></div>`;
+    let des='';
+    desRows.forEach(r=>{
+      des+=`<div class="desglose-row${r.sub?' subtraction':''}"><span>${r.label}</span><span>${r.val<0?'−':''}USD ${Math.abs(r.val).toFixed(0)}</span></div>`;
     });
     if(piezas>1){
-      des += `<div class="desglose-row"><span>Subtotal por pieza</span><span>USD ${totalUSDUnidad.toFixed(0)}</span></div>`;
-      des += `<div class="desglose-row"><span>× ${piezas} piezas</span><span>USD ${totalUSD.toFixed(0)}</span></div>`;
+      des+=`<div class="desglose-row"><span>Subtotal por pieza</span><span>USD ${totalUSDU.toFixed(0)}</span></div>`;
+      des+=`<div class="desglose-row"><span>× ${piezas} piezas</span><span>USD ${totalUSD.toFixed(0)}</span></div>`;
     }
-    des += `<div class="desglose-row total"><span>Total</span><span>$${totalARS.toLocaleString('es-AR')} · USD ${totalUSD.toFixed(0)}</span></div>`;
-    document.getElementById('desglose').innerHTML = des;
+    des+=`<div class="desglose-row total"><span>Total</span><span>$${totalARS.toLocaleString('es-AR')} · USD ${totalUSD.toFixed(0)}</span></div>`;
+    document.getElementById('desglose').innerHTML=des;
+  }
+
+  function calcTotal() {
+    const dolar=parseFloat(document.getElementById('cfg-dolar').value)||1230;
+    let baseUSD=0,extrasUSD=0;
+    const add=(metal,pesoId,compId)=>{const p=parseFloat(document.getElementById(pesoId).value)||0,pg=getPorGramo(metal,document.getElementById(compId).value);baseUSD+=calcMode==='mo'?p*Math.max(0,pg-getSpot(metal)):p*pg;};
+    if(modoMetal==='plata'||modoMetal==='combo') add('plata','peso-plata','comp-plata');
+    if(modoMetal==='oro'||modoMetal==='combo') add('oro','peso-oro','comp-oro');
+    stonesData.forEach(s=>{extrasUSD+=(s.cant||1)*(s.precio||0);});
+    if(document.getElementById('extra-grabado').checked) extrasUSD+=parseFloat(document.getElementById('cfg-grabado').value)||8;
+    if(document.getElementById('extra-urgente').checked){const uf=parseFloat(document.getElementById('cfg-urgente').value)||15,up=(parseFloat(document.getElementById('cfg-urgente-pct').value)||20)/100;extrasUSD+=uf+baseUSD*up;}
+    costosExtra.forEach(c=>{extrasUSD+=c.valor||0;});
+    return {totalUSD:(baseUSD+extrasUSD)*piezas,totalARS:Math.round((baseUSD+extrasUSD)*piezas*dolar)};
   }
 
   function generarPresupuesto() {
-    const cliente = document.getElementById('cliente').value||'cliente';
-    const dolar = parseFloat(document.getElementById('cfg-dolar').value)||1230;
-    const taller = document.getElementById('cfg-taller').value||'nuestro taller';
-    const plazo = document.getElementById('cfg-plazo').value||'15 días hábiles';
-    const tipoLabel = {anillo:'anillo',collar:'collar / dije',pulsera:'pulsera',aros:'aros',otro:'pieza'};
-    const tipo = tipoLabel[document.getElementById('tipo').value];
-
-    let metalDesc = '';
-    const labelsComp = ['','muy simple','simple','moderado','complejo','muy complejo'];
-    if(modoMetal==='plata'){
-      metalDesc=`plata 925 (${document.getElementById('peso-plata').value}g, diseño ${labelsComp[document.getElementById('comp-plata').value]})`;
-    } else if(modoMetal==='oro'){
-      metalDesc=`oro (${document.getElementById('peso-oro').value}g, diseño ${labelsComp[document.getElementById('comp-oro').value]})`;
-    } else {
-      metalDesc=`plata 925 (${document.getElementById('peso-plata').value}g) + oro (${document.getElementById('peso-oro').value}g)`;
-    }
-
-    let extras = [];
-    stonesData.forEach(s => {
-      if((s.cant||1)*(s.precio||0)>0) extras.push(`• ${s.desc||'Piedra'}: ${s.cant||1} unidad(es)`);
-    });
+    const cliente=document.getElementById('cliente').value||'cliente';
+    const dolar=parseFloat(document.getElementById('cfg-dolar').value)||1230;
+    const taller=document.getElementById('cfg-taller').value||'nuestro taller';
+    const plazo=document.getElementById('cfg-plazo').value||'15 días hábiles';
+    const tipoLabel={anillo:'anillo',collar:'collar / dije',pulsera:'pulsera',aros:'aros',otro:'pieza'};
+    const tipo=tipoLabel[document.getElementById('tipo').value];
+    const labelsComp=['','muy simple','simple','moderado','complejo','muy complejo'];
+    let metalDesc='';
+    if(modoMetal==='plata') metalDesc=`plata 925 (${document.getElementById('peso-plata').value}g, diseño ${labelsComp[document.getElementById('comp-plata').value]})`;
+    else if(modoMetal==='oro') metalDesc=`oro (${document.getElementById('peso-oro').value}g, diseño ${labelsComp[document.getElementById('comp-oro').value]})`;
+    else metalDesc=`plata 925 (${document.getElementById('peso-plata').value}g) + oro (${document.getElementById('peso-oro').value}g)`;
+    let extras=[];
+    stonesData.forEach(s=>{if((s.cant||1)*(s.precio||0)>0)extras.push(`• ${s.desc||'Piedra'}: ${s.cant||1} unidad(es)`);});
     if(document.getElementById('extra-grabado').checked) extras.push('• Grabado / inscripción personalizada');
     if(document.getElementById('extra-urgente').checked) extras.push('• Procesamiento urgente');
-    costosExtra.forEach(c => { if(c.valor>0) extras.push(`• ${c.desc||'Costo adicional'}`); });
-
-    let baseUSD=0;
-    if(modoMetal==='plata'||modoMetal==='combo') baseUSD+=parseFloat(document.getElementById('peso-plata').value||0)*getPorGramo('plata',document.getElementById('comp-plata').value);
-    if(modoMetal==='oro'||modoMetal==='combo') baseUSD+=parseFloat(document.getElementById('peso-oro').value||0)*getPorGramo('oro',document.getElementById('comp-oro').value);
-    let extrasUSD=0;
-    stonesData.forEach(s=>{ extrasUSD+=(s.cant||1)*(s.precio||0); });
-    if(document.getElementById('extra-grabado').checked) extrasUSD+=parseFloat(document.getElementById('cfg-grabado').value)||8;
-    if(document.getElementById('extra-urgente').checked){ const uf=parseFloat(document.getElementById('cfg-urgente').value)||15; const up=(parseFloat(document.getElementById('cfg-urgente-pct').value)||20)/100; extrasUSD+=uf+baseUSD*up; }
-    costosExtra.forEach(c=>{ extrasUSD+=c.valor||0; });
-    const totalUSD=(baseUSD+extrasUSD)*piezas;
-    const totalARS=Math.round(totalUSD*dolar);
-
+    costosExtra.forEach(c=>{if(c.valor>0)extras.push(`• ${c.desc||'Costo adicional'}`);});
+    const {totalUSD,totalARS}=calcTotal();
+    const moLinea=calcMode==='mo'?'\n⚙️ Nota: precio corresponde solo a mano de obra. El metal es aportado por vos.':'';
     let texto=`Hola ${cliente}! 😊\n\nTe paso el presupuesto para tu pedido en ${taller}:\n\n✨ DETALLE DEL PEDIDO\n• ${piezas>1?piezas+'x ':''}${tipo} en ${metalDesc}`;
     if(extras.length>0) texto+='\n'+extras.join('\n');
-    texto+=`\n\n💰 PRECIO TOTAL: $${totalARS.toLocaleString('es-AR')} (USD ${totalUSD.toFixed(0)})\n(Calculado al dólar blue del día: $${dolar.toLocaleString('es-AR')})\n\n⏱ Plazo estimado: ${plazo}\n\nEl precio puede ajustarse levemente al definir todos los detalles del diseño. Ante cualquier variación te aviso antes de empezar.\n\n¿Seguimos con el pedido? Estoy a tu disposición para cualquier consulta.`;
-
+    texto+=`${moLinea}\n\n💰 PRECIO TOTAL: $${totalARS.toLocaleString('es-AR')} (USD ${totalUSD.toFixed(0)})\n(Calculado al dólar blue del día: $${dolar.toLocaleString('es-AR')})\n\n⏱ Plazo estimado: ${plazo}\n\nEl precio puede ajustarse levemente al definir todos los detalles del diseño. Ante cualquier variación te aviso antes de empezar.\n\n¿Seguimos con el pedido? Estoy a tu disposición para cualquier consulta.`;
     document.getElementById('presupuesto-texto').textContent=texto;
     switchTab('presup');
   }
 
   function copiarPresupuesto() {
-    const txt=document.getElementById('presupuesto-texto').textContent;
-    navigator.clipboard.writeText(txt).then(()=>{
-      const btn=document.getElementById('copy-btn');
-      btn.textContent='¡Copiado!';
-      btn.classList.add('copied');
-      setTimeout(()=>{ btn.textContent='Copiar presupuesto'; btn.classList.remove('copied'); },2000);
+    navigator.clipboard.writeText(document.getElementById('presupuesto-texto').textContent).then(()=>{
+      const btn=document.getElementById('copy-btn'); btn.textContent='¡Copiado!'; btn.classList.add('copied');
+      setTimeout(()=>{btn.textContent='Copiar presupuesto';btn.classList.remove('copied');},2000);
     });
   }
 
-  loadConfig();
-  recalc();
+  loadConfig(); recalc();
 </script>
 </body>
 </html>
